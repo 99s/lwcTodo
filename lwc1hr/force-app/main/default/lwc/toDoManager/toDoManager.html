@@ -26,22 +26,12 @@
         <lightning-layout-item size="12">
             <div class="slds-text-handling_large slds-m-vertical_large">upcoming tasks</div> 
             <template for:each={upcomingTasks} for:item="todo">
-                <div class="item-class" key={todo.todoId}>
-                    <span class="slds-text-heading_lebel">{todo.todoName}</span>
-                    <lightning-button-icon icon-name="utility:check" class="slds-p-horizontal_medium" onclick={updatetodoHandler} title="Update Todo"></lightning-button-icon>
-                    <lightning-button-icon icon-name="utility:delete" class="slds-p-horizontal_medium" onclick={deletetodoHandler} title="Delete Todo"></lightning-button-icon>
-                </div>
-               
+                   <c-todo-item-component key={todo.todoId} todo-id={todo.todoId} todo-name={todo.todoName}></c-todo-item-component>
             </template>
 
             <div class="slds-text-handling_large slds-m-vertical_large">completed tasks</div> 
             <template for:each={completedTasks} for:item="todo">
-                <div class="item-class" key={todo.todoId}>
-                    <span class="slds-text-heading_lebel">{todo.todoName}</span>
-                    <lightning-button-icon icon-name="utility:check" class="slds-p-horizontal_medium" onclick={updatetodoHandler} title="Update Todo"></lightning-button-icon>
-                    <lightning-button-icon icon-name="utility:delete" class="slds-p-horizontal_medium" onclick={deletetodoHandler} title="Delete Todo"></lightning-button-icon>
-                </div>
-               
+                <c-todo-item-component key={todo.todoId} todo-id={todo.todoId} todo-name={todo.todoName} done></c-todo-item-component>
             </template>
         </lightning-layout-item>
 

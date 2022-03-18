@@ -1,4 +1,6 @@
 import { LightningElement, track } from 'lwc';
+import getCurrentTodos from "@salesforce/apex/ToDoController.getCurrentTodos";
+import addTodo from "@salesforce/apex/ToDoController.addTodo";
 
 export default class ToDoManager extends LightningElement {
     //but it works without track as well
@@ -60,13 +62,17 @@ export default class ToDoManager extends LightningElement {
         console.log('added todo ',inputBox.value);
         
         const todoItem = {
-            todoId : this.todoS.length,
             todoName : inputBox.value,
-            done : false,
-            todoDate: new Date()
+            done : false
         }
+        addToDo({payload : JSON.stringify(todoItem)}).then(response => {
+            console.log('item '+todoItem.todoId+ ' added');
+            this.todoS.push(todoItem);
+        }).catch(error => {
+              console.error('Error Inserting Todo:',error);
+        });
 
-        this.todoS.push(todoItem);
+        
         inputBox.value = "";
     }
 
