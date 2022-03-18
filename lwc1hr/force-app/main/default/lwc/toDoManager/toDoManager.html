@@ -1,0 +1,49 @@
+<template>
+    <lightning-layout class="slds-align_absolute-center slds-text-align_center container-class" multiple-rows>
+        <lightning-layout-item size="12">
+            <div class="time_class">{_time}</div>
+            
+        </lightning-layout-item>
+        <lightning-layout-item size="12">
+            <div class="greeting_class">{_greeting}</div> 
+        </lightning-layout-item>
+
+        <lightning-layout-item size="12">
+            <div class="slds-text-handling_large slds-m-vertical_large">What is Your main focus today?</div> 
+        </lightning-layout-item>
+
+        <lightning-layout-item size="12" large-device-size="6" medium-device-size="10" small-device-size="12" class="slds-m-top_large">
+            <lightning-layout>
+                <lightning-layout-item size="11">
+                    <lightning-input type="text" label="Whats in your mind" variant="label-hidden" placeholder="Whats in your mind"></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="1">
+                    <lightning-button-icon icon-name="utility:add" title="Add Todo" id="todoText_id" onclick={addTodoHandler}></lightning-button-icon>
+                </lightning-layout-item>
+            </lightning-layout>
+        </lightning-layout-item>
+
+        <lightning-layout-item size="12">
+            <div class="slds-text-handling_large slds-m-vertical_large">upcoming tasks</div> 
+            <template for:each={upcomingTasks} for:item="todo">
+                <div class="item-class" key={todo.todoId}>
+                    <span class="slds-text-heading_lebel">{todo.todoName}</span>
+                    <lightning-button-icon icon-name="utility:check" class="slds-p-horizontal_medium" onclick={updatetodoHandler} title="Update Todo"></lightning-button-icon>
+                    <lightning-button-icon icon-name="utility:delete" class="slds-p-horizontal_medium" onclick={deletetodoHandler} title="Delete Todo"></lightning-button-icon>
+                </div>
+               
+            </template>
+
+            <div class="slds-text-handling_large slds-m-vertical_large">completed tasks</div> 
+            <template for:each={completedTasks} for:item="todo">
+                <div class="item-class" key={todo.todoId}>
+                    <span class="slds-text-heading_lebel">{todo.todoName}</span>
+                    <lightning-button-icon icon-name="utility:check" class="slds-p-horizontal_medium" onclick={updatetodoHandler} title="Update Todo"></lightning-button-icon>
+                    <lightning-button-icon icon-name="utility:delete" class="slds-p-horizontal_medium" onclick={deletetodoHandler} title="Delete Todo"></lightning-button-icon>
+                </div>
+               
+            </template>
+        </lightning-layout-item>
+
+    </lightning-layout>
+</template>
